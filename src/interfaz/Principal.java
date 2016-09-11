@@ -75,6 +75,11 @@ int longitud;
         jPanel2.add(cmdListo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 70, -1));
 
         cmdCambiar.setText("Cambiar Contraseña");
+        cmdCambiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCambiarActionPerformed(evt);
+            }
+        });
         jPanel2.add(cmdCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         cmdSeguridad.setText("Ver seguridad");
@@ -184,8 +189,19 @@ int longitud;
         longitud = contrasena.length();
         p = new Password(longitud, contrasena);
         c = p.ver();
-        txtArea.setText("Su contraseña actual es: " + c.getContrasenia()+ "\n" + " longitud de su contraseña es: " + c.getLongitud());
+        txtArea.setText("Su contraseña es: " + c.getContrasenia()+ "\n" + " longitud de su contraseña es: " + c.getLongitud());
     }//GEN-LAST:event_cmdVerActionPerformed
+
+    private void cmdCambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCambiarActionPerformed
+        txtLongitud.setEditable(false);
+       cmdListo.setEnabled(true);
+       txtContra.setEditable(true);
+        txtContra.selectAll();
+        txtContra.requestFocusInWindow();
+        cmdVer.setEnabled(false);
+        cmdCambiar.setEnabled(false);
+        cmdSeguridad.setEnabled(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_cmdCambiarActionPerformed
 
     /**
      * @param args the command line arguments
