@@ -32,13 +32,15 @@ public class Password {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-    public boolean fuerte(){
-        boolean b1 = true;
+    public String fuerte(){
+       String f;
         
-        if (this.longitud < 6) {
-            b1 = false;
+        if (this.longitud>=6) {
+         f="La contraseña es fuerte";
+        }else{
+            f="la contraseña es debil";
         }
         
-        return b1;
+        return f;
     }
 }
