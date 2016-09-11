@@ -4,18 +4,26 @@
  * and open the template in the editor.
  */
 package interfaz;
-
+import clases.Password;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Jesus
  */
 public class Principal extends javax.swing.JFrame {
-
+int longitud;
+        String contrasena;
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        txtLongitud.setText("8");
+        txtLongitud.requestFocusInWindow();
+        txtLongitud.selectAll();
+        cmdCambiar.setEnabled(false);
+            cmdSeguridad.setEnabled(false);
+            cmdVer.setEnabled(false);
     }
 
     /**
@@ -30,15 +38,18 @@ public class Principal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        cmdListo = new javax.swing.JButton();
+        cmdCambiar = new javax.swing.JButton();
+        cmdSeguridad = new javax.swing.JButton();
+        cmdVer = new javax.swing.JButton();
+        cmdBorrar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtArea = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        txtLongitud = new javax.swing.JTextField();
+        txtContra = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,36 +61,57 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 18)); // NOI18N
         jLabel3.setText("Ingresar contraseña");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
-
-        jTextField2.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 18)); // NOI18N
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 190, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Opciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("MS Reference Sans Serif", 0, 14))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setText("Listo");
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 70, -1));
+        cmdListo.setText("Listo");
+        cmdListo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdListoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cmdListo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 70, -1));
 
-        jButton1.setText("Cambiar Contraseña");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        cmdCambiar.setText("Cambiar Contraseña");
+        jPanel2.add(cmdCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
-        jButton3.setText("Ver seguridad");
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
+        cmdSeguridad.setText("Ver seguridad");
+        jPanel2.add(cmdSeguridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
 
-        jButton4.setText("Ver contraseña");
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+        cmdVer.setText("Mostrar");
+        cmdVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdVerActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cmdVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
 
-        jButton5.setText("Borrar");
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-264, 100, 200, -1));
+        cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 200, 210));
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        jScrollPane2.setViewportView(txtArea);
+
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 220, 100));
+
+        jLabel2.setText("Longitud");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+        jPanel1.add(txtLongitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 60, -1));
+        jPanel1.add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 190, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,11 +121,71 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdListoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdListoActionPerformed
+       Password p, p1;
+        Password pass2;
+            int longitud = 8;
+            String pass;
+            pass = txtContra.getText();
+            pass2 = new Password(longitud, pass);
+            longitud = Integer.parseInt(txtLongitud.getText());
+            pass2.setLongitud(longitud);
+            
+           if(txtLongitud.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Digite la Longitud", "error", JOptionPane.ERROR_MESSAGE);
+            txtLongitud.requestFocusInWindow();
+    }else  if (txtContra.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite Contraseña", "error", JOptionPane.ERROR_MESSAGE);
+            txtContra.requestFocusInWindow();
+        }else if (longitud != pass.length()) {
+                JOptionPane.showMessageDialog(this, "La contraseña no coincide con la longitud", "ERROR", JOptionPane.ERROR_MESSAGE); 
+        }else {
+            contrasena = txtContra.getText();
+            longitud = contrasena.length();
+            
+            p = new Password(longitud, contrasena);
+            JOptionPane.showMessageDialog(this, "Contraseña guardada");
+            
+            cmdCambiar.setEnabled(true);
+            cmdSeguridad.setEnabled(true);
+            cmdVer.setEnabled(true);
+            cmdBorrar.setEnabled(true);
+            cmdListo.setEnabled(false);
+            txtContra.setEditable(false);
+        }
+    }//GEN-LAST:event_cmdListoActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+       txtLongitud.setText("8");
+        txtContra.setText("");
+        txtArea.setText("");
+        cmdListo.setEnabled(true);
+        cmdCambiar.setEnabled(false);
+        cmdSeguridad.setEnabled(false);
+        cmdVer.setEnabled(false);
+        cmdBorrar.setEnabled(false);
+        txtContra.setEditable(true);
+        txtLongitud.requestFocusInWindow();
+        txtLongitud.selectAll();
+    }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void cmdVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdVerActionPerformed
+       Password p, c;
+
+        contrasena = txtContra.getText();
+        longitud = contrasena.length();
+        p = new Password(longitud, contrasena);
+        c = p.ver();
+        txtArea.setText("Su contraseña actual es: " + c.getContrasenia()+ "\n" + " longitud de su contraseña es: " + c.getLongitud());
+    }//GEN-LAST:event_cmdVerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,17 +223,20 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton cmdBorrar;
+    private javax.swing.JButton cmdCambiar;
+    private javax.swing.JButton cmdListo;
+    private javax.swing.JButton cmdSeguridad;
+    private javax.swing.JButton cmdVer;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea txtArea;
+    private javax.swing.JPasswordField txtContra;
+    private javax.swing.JTextField txtLongitud;
     // End of variables declaration//GEN-END:variables
 }

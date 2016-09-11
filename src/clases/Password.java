@@ -43,4 +43,25 @@ public class Password {
         
         return f;
     }
+    public Password cambiar(){
+        int longi;
+        String clave;
+        Password nueva;
+        
+         longi = this.longitud;
+        clave = this.contrasenia;
+        
+        nueva = new Password(longi,clave);
+        return nueva;
+    }
+    public Password ver(){
+        Password pass;
+       String clave;
+       int longi;
+       clave=this.contrasenia;
+       longi=this.longitud;
+       pass=new Password(longi,clave);
+       return pass;
+    }
+    
 }
