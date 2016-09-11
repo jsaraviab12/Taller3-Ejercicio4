@@ -18,6 +18,7 @@ int longitud;
      */
     public Principal() {
         initComponents();
+        
         txtLongitud.setText("8");
         txtLongitud.requestFocusInWindow();
         txtLongitud.selectAll();
@@ -50,6 +51,7 @@ int longitud;
         jLabel2 = new javax.swing.JLabel();
         txtLongitud = new javax.swing.JTextField();
         txtContra = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +85,11 @@ int longitud;
         jPanel2.add(cmdCambiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         cmdSeguridad.setText("Ver seguridad");
+        cmdSeguridad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdSeguridadActionPerformed(evt);
+            }
+        });
         jPanel2.add(cmdSeguridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
 
         cmdVer.setText("Mostrar");
@@ -105,18 +112,35 @@ int longitud;
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtArea.setEditable(false);
         txtArea.setColumns(20);
         txtArea.setRows(5);
         jScrollPane2.setViewportView(txtArea);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 200, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 220, 100));
 
         jLabel2.setText("Longitud");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+
+        txtLongitud.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLongitudKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtLongitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 60, -1));
-        jPanel1.add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 190, -1));
+
+        txtContra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtContraKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 190, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
+        jLabel4.setText("Solo validos \".\" \"- \" \"_\"");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,7 +155,8 @@ int longitud;
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(560, 350));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdListoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdListoActionPerformed
@@ -203,6 +228,38 @@ int longitud;
         cmdSeguridad.setEnabled(false);        // TODO add your handling code here:
     }//GEN-LAST:event_cmdCambiarActionPerformed
 
+    private void cmdSeguridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSeguridadActionPerformed
+       String con;
+        Password cla;
+        contrasena = txtContra.getText();
+        longitud= contrasena.length();
+        cla = new Password(longitud, contrasena);
+        con = cla.fuerte();
+        txtArea.setText(con);
+    }//GEN-LAST:event_cmdSeguridadActionPerformed
+
+    private void txtLongitudKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLongitudKeyTyped
+        char c=evt.getKeyChar();
+             
+         
+          if(!Character.isDigit(evt.getKeyChar())){ 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+          }
+    }//GEN-LAST:event_txtLongitudKeyTyped
+
+    private void txtContraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraKeyTyped
+        char c=evt.getKeyChar();
+             
+         
+          if(!Character.isDigit(evt.getKeyChar()) &&evt.getKeyChar()!='-' && evt.getKeyChar()!='_' &&evt.getKeyChar()!='.'){ 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+          }
+    }//GEN-LAST:event_txtContraKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -247,6 +304,7 @@ int longitud;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
