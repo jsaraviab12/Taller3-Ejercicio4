@@ -35,10 +35,10 @@ public class Password {
     public String fuerte(){
        String f;
         
-        if (this.longitud>=6) {
+        if (this.getLongitud()>=6) {
          f="La contraseña es fuerte";
         }else{
-            f="la contraseña es debil";
+            f="La contraseña es debil";
         }
         
         return f;
@@ -48,8 +48,8 @@ public class Password {
         String clave;
         Password nueva;
         
-         longi = this.longitud;
-        clave = this.contrasenia;
+         longi = this.getLongitud();
+        clave = this.getContrasenia();
         
         nueva = new Password(longi,clave);
         return nueva;
@@ -58,8 +58,8 @@ public class Password {
         Password pass;
        String clave;
        int longi;
-       clave=this.contrasenia;
-       longi=this.longitud;
+       clave=this.getContrasenia();
+       longi=this.getLongitud();
        pass=new Password(longi,clave);
        return pass;
     }
